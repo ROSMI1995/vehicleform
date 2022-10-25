@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="card w-85">
+            {% for post in all_data_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title text-capitalize card-header"><span class= "text-justify" >{{ post.Vehicle_Number }}</span></a></h3>
+                    <p class="card-text text-muted  font-weight-light h6">{{ post.Vehicle_Type }}</p>
+                    <h5 class="card-title">{{ post.Vehicle_Model }}</h5>
+                    <p class="card-text">{{ post.Description}}</p>
+                    </div>
+                {% if user.is_superuser %}
+
+		                
+		            
+		                <p> <small><button type="button" class="btn btn-light float-right"><a class="text-end" href="{% url 'delete' post.id %}">Delete</a></small></button>
+		                 <button type="button" class="btn btn-light float-right"><small><a class="text-end" href="{% url 'update' post.pk %}">Edit</a></small></button></p>
+        
+           
+				{% elif firstname.is_user %}
+						 <button type="button" class="btn btn-light"><small><a class="text-end" href="{% url 'update' post.pk %}">Edit</a></small></button></p>
+                    
+            </div>
+        </div>
+            
+        
+
+
+
+
+
+			
+        	{% endif %}
+
+
+			{% endfor %}
+		
+	
+</div>
+{% endblock %}
